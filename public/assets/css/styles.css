@@ -1,0 +1,62 @@
+/* Estilos base e micro-interações editoriais */
+        body {
+            background-color: #F7F5F0;
+            color: #141414;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Animações suaves de entrada ao rolar a página (Scroll Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Grid técnico sutil de engenharia */
+        .swiss-grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(20, 20, 20, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(20, 20, 20, 0.04) 1px, transparent 1px);
+        }
+
+        /* Estilização da barra de rolagem discreta */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F5F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1CEC7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+
+        /* Indicador pulsante discreto para sensor ativo */
+        @keyframes pulse-sensor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.45; }
+        }
+        .sensor-active {
+            animation: pulse-sensor 1.8s infinite ease-in-out;
+        }
+
+/* Ajustes de acessibilidade e compatibilidade para dispositivos móveis. */
+html { scroll-behavior: smooth; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #C85A32; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) { .reveal { transition: none; transform: none; } .sensor-active { animation: none; } html { scroll-behavior: auto; } }
