@@ -1,0 +1,10 @@
+Options -Indexes
+DirectoryIndex index.php
+
+# Impede acesso direto a arquivos e pastas internos quando o projeto
+# é servido pela raiz do Apache. Em produção, prefira configurar /public como DocumentRoot.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^(?:app|config|database|docs|\.git)(?:/|$) - [F,L,NC]
+    RewriteRule ^(?:\.env|\.gitignore|README\.md)$ - [F,L,NC]
+</IfModule>

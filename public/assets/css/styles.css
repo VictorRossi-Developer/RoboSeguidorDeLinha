@@ -1,0 +1,221 @@
+/* Estilos base e micro-interações editoriais */
+        body {
+            background-color: #F7F5F0;
+            color: #141414;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Animações de entrada acionadas pela rolagem (demonstração visual). */
+        .reveal {
+            opacity: 0;
+            transform: translate3d(0, 30px, 0);
+            filter: blur(3px);
+            transition: opacity .72s cubic-bezier(.16,1,.3,1), transform .82s cubic-bezier(.16,1,.3,1), filter .72s ease;
+            will-change: opacity, transform;
+        }
+        .reveal.from-left { transform: translate3d(-34px, 12px, 0); }
+        .reveal.from-right { transform: translate3d(34px, 12px, 0); }
+        .reveal.zoom-in { transform: scale(.94) translateY(18px); }
+        .reveal.active { opacity: 1; transform: translate3d(0,0,0) scale(1); filter: blur(0); }
+        .reveal-delay-1 { transition-delay: .1s; }
+        .reveal-delay-2 { transition-delay: .2s; }
+        .reveal-delay-3 { transition-delay: .3s; }
+
+        /* Barra de progresso da leitura. */
+        .scroll-progress { position: fixed; inset: 0 auto auto 0; width: 100%; height: 3px; z-index: 1000; pointer-events: none; }
+        .scroll-progress > span { display:block; width:100%; height:100%; background:#C85A32; transform:scaleX(0); transform-origin:left center; will-change:transform; }
+        header.is-scrolled { box-shadow: 0 8px 24px rgba(20,20,20,.07); transition: box-shadow .25s ease; }
+        .section-marker { transition: color .2s ease, background-color .2s ease; }
+        .float-in { animation: float-in .8s cubic-bezier(.16,1,.3,1) both; }
+        @keyframes float-in { from { opacity:0; transform:translateY(14px) scale(.985); } to { opacity:1; transform:translateY(0) scale(1); } }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Grid técnico sutil de engenharia */
+        .swiss-grid-bg {
+            background-size: 40px 40px;
+            background-image: 
+                linear-gradient(to right, rgba(20, 20, 20, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(20, 20, 20, 0.04) 1px, transparent 1px);
+        }
+
+        /* Estilização da barra de rolagem discreta */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F5F0;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D1CEC7;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+
+        /* Indicador pulsante discreto para sensor ativo */
+        @keyframes pulse-sensor {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.45; }
+        }
+        .sensor-active {
+            animation: pulse-sensor 1.8s infinite ease-in-out;
+        }
+
+/* Acessibilidade e compatibilidade. */
+html { scroll-behavior: smooth; }
+button, a, input, select { -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid #C85A32; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity:1; transition:none; transform:none; filter:none; }
+  .sensor-active { animation:none; }
+  .float-in { animation:none; }
+  html { scroll-behavior:auto; }
+}
+
+/* Microinterações ao passar o mouse — aprimoramento visual de teste. */
+@media (hover: hover) and (pointer: fine) {
+  /* Cartões técnicos e painéis ganham elevação discreta. */
+  main article,
+  main figure,
+  main .bg-surface.rounded-2xl,
+  main .bg-white.rounded-2xl {
+    transition: transform .28s cubic-bezier(.2,.75,.25,1),
+                box-shadow .28s ease, border-color .28s ease;
+  }
+  main article:hover,
+  main figure:hover,
+  main .bg-surface.rounded-2xl:hover,
+  main .bg-white.rounded-2xl:hover {
+    transform: translateY(-4px);
+    border-color: rgba(200, 90, 50, .42);
+    box-shadow: 0 14px 30px rgba(20, 20, 20, .09);
+  }
+
+  /* Botões com resposta tátil visual, sem alterar suas ações. */
+  button:not(:disabled) {
+    transition: transform .2s ease, box-shadow .2s ease,
+                background-color .2s ease, border-color .2s ease;
+  }
+  button:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(20, 20, 20, .10);
+  }
+  button:not(:disabled):active { transform: translateY(0) scale(.98); }
+
+  /* Links da navegação recebem um sublinhado animado. */
+  header nav a { position: relative; transition: color .2s ease; }
+  header nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -7px;
+    height: 2px;
+    background: #C85A32;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .22s ease;
+  }
+  header nav a:hover::after { transform: scaleX(1); }
+
+  /* A imagem do circuito amplia levemente dentro do enquadramento. */
+  main figure img {
+    transition: transform .4s cubic-bezier(.2,.75,.25,1), filter .3s ease;
+  }
+  main figure a { display: block; overflow: hidden; border-radius: .75rem; }
+  main figure a:hover img { transform: scale(1.025); filter: saturate(1.06); }
+
+  /* Realce dos indicadores dos sensores e dos itens de links. */
+  .sensor-box { transition: transform .2s ease, box-shadow .2s ease; }
+  .sensor-box:hover { transform: scale(1.12); box-shadow: 0 0 0 3px rgba(200,90,50,.14); }
+  main a[href^="http"]:hover { text-decoration-color: #C85A32; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main article, main figure, main .bg-surface.rounded-2xl,
+  main .bg-white.rounded-2xl, button, header nav a::after,
+  main figure img, .sensor-box {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* Destaque neon vermelho nos componentes do LINA-01. */
+@media (hover: hover) and (pointer: fine) {
+  #circuito article,
+  #circuito figure,
+  #circuito figure > a,
+  #circuito figure img,
+  #circuito table,
+  #circuito table tr,
+  #circuito table td,
+  #circuito table th {
+    transition: transform .32s cubic-bezier(.2,.75,.25,1),
+                border-color .28s ease, box-shadow .32s ease,
+                filter .32s ease, background-color .28s ease;
+  }
+
+  #circuito article:hover,
+  #circuito figure:hover {
+    border-color: rgba(255, 23, 68, .68) !important;
+    box-shadow: 0 0 0 1px rgba(255, 23, 68, .30),
+                0 0 15px rgba(255, 23, 68, .22),
+                0 12px 28px rgba(20, 20, 20, .10) !important;
+    transform: translateY(-5px) scale(1.012);
+  }
+
+  #circuito article:hover {
+    background-color: rgba(255, 23, 68, .025);
+  }
+
+  #circuito figure > a {
+    position: relative;
+    border-radius: .75rem;
+    outline: 1px solid transparent;
+    outline-offset: -2px;
+  }
+
+  #circuito figure > a:hover {
+    outline-color: rgba(255, 23, 68, .78);
+    box-shadow: 0 0 0 1px rgba(255, 23, 68, .30),
+                0 0 18px rgba(255, 23, 68, .28);
+  }
+
+  #circuito figure > a:hover img {
+    transform: scale(1.018);
+    filter: saturate(1.12) contrast(1.025);
+  }
+
+  #circuito table tr:hover {
+    background-color: rgba(255, 23, 68, .055);
+    box-shadow: inset 3px 0 0 rgba(255, 23, 68, .8),
+                0 0 12px rgba(255, 23, 68, .13);
+  }
+
+  #circuito table td:hover,
+  #circuito table th:hover {
+    background-color: rgba(255, 23, 68, .075);
+    box-shadow: inset 0 0 0 1px rgba(255, 23, 68, .48),
+                0 0 12px rgba(255, 23, 68, .20);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #circuito article,
+  #circuito figure,
+  #circuito figure > a,
+  #circuito figure img,
+  #circuito table tr,
+  #circuito table td,
+  #circuito table th {
+    transition: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}

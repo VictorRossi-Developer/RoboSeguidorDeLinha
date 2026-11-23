@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="470" viewBox="0 0 1000 470" role="img" aria-labelledby="title desc">
+  <title id="title">Modelo lógico do banco de dados feira_iot</title>
+  <desc id="desc">Relacionamento um para muitos entre visitantes e baterias de teste.</desc>
+  <rect width="1000" height="470" rx="22" fill="#F7F5F0"/>
+  <text x="52" y="55" font-family="Inter, Arial, sans-serif" font-size="14" letter-spacing="3" fill="#C85A32" font-weight="700">LINA-01 / MODELO LÓGICO</text>
+  <text x="52" y="91" font-family="Inter, Arial, sans-serif" font-size="27" fill="#141414" font-weight="700">Banco de dados feira_iot</text>
+  <rect x="65" y="130" width="355" height="280" rx="14" fill="#FFFFFF" stroke="#D8D3C9" stroke-width="2"/>
+  <path d="M65 144 Q65 130 79 130 H406 Q420 130 420 144 V184 H65 Z" fill="#141414"/>
+  <text x="91" y="165" font-family="Inter, Arial, sans-serif" font-size="18" fill="#FFFFFF" font-weight="700">VISITORS</text>
+  <text x="91" y="218" font-family="JetBrains Mono, monospace" font-size="14" fill="#C85A32">PK</text>
+  <text x="130" y="218" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">id</text>
+  <text x="91" y="254" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">name</text>
+  <text x="91" y="287" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">email  (UNIQUE)</text>
+  <text x="91" y="320" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">interest</text>
+  <text x="91" y="353" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">created_at</text>
+  <rect x="580" y="130" width="355" height="280" rx="14" fill="#FFFFFF" stroke="#D8D3C9" stroke-width="2"/>
+  <path d="M580 144 Q580 130 594 130 H921 Q935 130 935 144 V184 H580 Z" fill="#141414"/>
+  <text x="606" y="165" font-family="Inter, Arial, sans-serif" font-size="18" fill="#FFFFFF" font-weight="700">TEST_BATTERIES</text>
+  <text x="606" y="218" font-family="JetBrains Mono, monospace" font-size="14" fill="#C85A32">PK</text>
+  <text x="645" y="218" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">id</text>
+  <text x="606" y="251" font-family="JetBrains Mono, monospace" font-size="14" fill="#C85A32">FK</text>
+  <text x="645" y="251" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">visitor_id  (NULL)</text>
+  <text x="606" y="284" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">avg_speed</text>
+  <text x="606" y="317" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">lap_time</text>
+  <text x="606" y="350" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">status</text>
+  <text x="606" y="383" font-family="JetBrains Mono, monospace" font-size="14" fill="#141414">created_at</text>
+  <path d="M420 268 H580" stroke="#C85A32" stroke-width="3" fill="none"/>
+  <path d="M566 258 L580 268 L566 278" stroke="#C85A32" stroke-width="3" fill="none"/>
+  <text x="446" y="248" font-family="Inter, Arial, sans-serif" font-size="13" fill="#555555" font-weight="600">1 : N</text>
+  <text x="52" y="448" font-family="Inter, Arial, sans-serif" font-size="12" fill="#555555">ON DELETE SET NULL — os testes são preservados quando um visitante é excluído.</text>
+</svg>
